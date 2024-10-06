@@ -1,8 +1,8 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
     <meta charset="UTF-8">
-    <title>User Registration</title>
+    <title>新規会員登録</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -45,13 +45,9 @@
             margin: 10px 0;
             border: 1px solid #ccc;
             border-radius: 4px;
-        }
-
-        .register-container button {
             background-color: #007BFF;
             color: #fff;
             font-size: 16px;
-            border: none;
         }
 
         .register-container button:hover {
@@ -70,26 +66,22 @@
     <form action="/register" method="post">
         <label>
             <div style="font-weight: bold; margin-bottom: 5px; width: 100%;">ユーザー名：</div>
-            <input name="username" placeholder="Username" required type="text">
-            <div class="error-message" style="color: red;">Error message here</div>
+            <input name="username" placeholder="ユーザー名" required type="text">
+            <div class="error-message" style="color: red;">エラーメッセージがここに表示されます</div>
         </label>
-
         <label>
             <a style="font-weight: bold; margin-bottom: 5px; width: 100%;">メールアドレス：</a>
-            <input name="email" placeholder="Email" required type="email">
+            <input name="email" placeholder="メールアドレス" required type="email">
         </label>
-
         <label>
             <a style="font-weight: bold; margin-bottom: 5px; width: 100%;">パスワード：</a>
-            <input name="password" placeholder="Password" required type="password">
+            <input name="password" placeholder="パスワード" required type="password">
         </label>
-
         <label>
             <a style="font-weight: bold; margin-bottom: 5px; width: 100%;">パスワード確認：</a>
-            <input name="password" placeholder="Password" required type="password">
+            <input name="password_confirmation" placeholder="パスワード確認" required type="password">
         </label>
-
-        <button type="submit">Register</button>
+        <button type="submit">登録</button>
     </form>
 </div>
 </body>

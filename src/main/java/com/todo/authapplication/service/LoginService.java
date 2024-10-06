@@ -18,12 +18,16 @@ public class LoginService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        if (username == null || username.isBlank()) {
+            throw new UsernameNotFoundException("ユーザー名が空です。");
+        }
+
         User user = userRepository.findByUserName(username);
         if (user != null) {
-            log.info("username: {}, password: {}", user.getUserName(), user.getPassword());
+            log.info("ユーザーが認証されました: {}", user.getUserName());
             return new UserDetail(user);
         } else {
-            throw new UsernameNotFoundException("User not found for name: " + username);
+            throw new UsernameNotFoundException("認証に失敗しました。");
         }
 
     }
