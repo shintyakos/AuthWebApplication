@@ -1,30 +1,24 @@
 package com.todo.authapplication.model;
 
-import com.todo.authapplication.util.PasswordMatches;
 import jakarta.validation.constraints.Email;
+import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 
 @Getter
 @Setter
-@ToString(exclude = {"password", "confirmPassword"})
+@ToString
 @EqualsAndHashCode
-@PasswordMatches
-public class UserDto {
-    @NotNull
-    @Size(min=3, max=50)
+public class SignUpForm {
+    @NotBlank
+    @Size(min=3, max=50, message="ユーザー名は3文字以上50文字以下で入力してください。")
     private String username;
 
-    @NotNull
-    @Size(min=8, max=100)
+    @NotBlank
+    @Size(min=8, max=100, message="パスワードは8文字以上100文字以下で入力してください。")
     @ToString.Exclude
     private String password;
-
-    @NotNull
-    @Size(min=8, max=100)
-    @ToString.Exclude
-    private String confirmPassword;
 
     @NotNull
     @Email
