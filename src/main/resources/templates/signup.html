@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>新規会員登録</title>
@@ -56,26 +56,30 @@
 
         .error-message {
             color: red;
-            display: none;
         }
     </style>
 </head>
 <body>
 <div class="register-container">
     <h2>新規会員登録</h2>
-    <form action="/register" method="post">
+    <form th:action="@{/register}" method="post" th:object="${signUpForm}">
+        <div th:if="${signupError}">
+            <div class="error-message" th:text="${signupError}"></div>
+        </div>
         <label>
-            <div style="font-weight: bold; margin-bottom: 5px; width: 100%;">ユーザー名：</div>
-            <input name="username" placeholder="ユーザー名" required type="text">
-            <div class="error-message" style="color: red;">エラーメッセージがここに表示されます</div>
+            <a style="font-weight: bold; margin-bottom: 5px; width: 100%;">ユーザー名：</a>
+            <input th:field="*{username}" placeholder="ユーザー名" required type="text">
+            <div class="error-message" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
         </label>
         <label>
             <a style="font-weight: bold; margin-bottom: 5px; width: 100%;">メールアドレス：</a>
-            <input name="email" placeholder="メールアドレス" required type="email">
+            <input th:field="*{email}" placeholder="メールアドレス" required type="email">
+            <div class="error-message" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></div>
         </label>
         <label>
             <a style="font-weight: bold; margin-bottom: 5px; width: 100%;">パスワード：</a>
-            <input name="password" placeholder="パスワード" required type="password">
+            <input th:field="*{password}" placeholder="パスワード" required type="password">
+            <div class="error-message" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
         </label>
         <label>
             <a style="font-weight: bold; margin-bottom: 5px; width: 100%;">パスワード確認：</a>
